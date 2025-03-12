@@ -12,7 +12,7 @@ from   matplotlib import dates
 
 
 class Supervisor:
-    def __init__(self, devicename):
+    def __init__(self, devicename, datadirname):
         self.bot_flag = True ## 
         self.test_mode = False
         self.telebot_config_token   = telebot_config.token
@@ -26,11 +26,13 @@ class Supervisor:
         ## get local ip
         self.get_local_ip()
 
-        ## прочитать конфиг, считать путь к данным
-        #self.datadirname = 'data/Съемка'
-        self.datadirname = "D:\\AerosolComplex\\YandexDisk\\ИКМО org.msu\\_Instruments\\_Grimm5416\\_Today"
-        self.logdirname  = ".\\log"
+        ##  прочитать конфиг, считать путь к данным
+        ##  путь к файлам исходных данных
+        self.datadirname = datadirname  ## "Путь к данным"
         if not self.datadirname.endswith(self.sep): self.datadirname += self.sep
+
+        ##  файл лога
+        self.logdirname  = "." + self.sep + "log"
         if not self.logdirname.endswith(self.sep):  self.logdirname  += self.sep
         if not os.path.isdir(self.logdirname):
             os.mkdir(self.logdirname)
@@ -100,7 +102,7 @@ class Supervisor:
 
     ## ----------------------------------------------------------------
     ##  определить окончание слова "час" в зависимости от числа 
-    ## 1 час, 2 часа, 5 часов, 21 час
+    ##  1 час, 2 часа, 5 часов, 21 час
     ## ----------------------------------------------------------------
     def get_ending(self, n):
         n = int(n)

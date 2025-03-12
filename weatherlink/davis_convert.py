@@ -19,20 +19,16 @@ def read_and_convert_data(file_name):
     print()
 
     importer.import_data()
-    #print("End of import data")
 
     ##  add calculated values
     for i in range(len(importer.records)):
         record = importer.records[i]
-        #print(record)
         record.update(calculate_all_record_values(record))
         importer.records[i] = record
-    #print("End of add")
 
     ##  convert to dataframe
     df = pd.DataFrame.from_records(importer.records)
     print(df.shape)
-    
     columns_to_drop = ['solar_radiation', 'solar_radiation_high', 'uv_index', 'uv_index_high']
     df.drop(columns=columns_to_drop, inplace=True)
     print(df.shape)

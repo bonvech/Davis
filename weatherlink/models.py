@@ -24,7 +24,6 @@ DASH_SMALL = 255
 
 STRAIGHT_NUMBER = int
 
-#STRAIGHT_DECIMAL = float
 STRAIGHT_DECIMAL = decimal.Decimal
 
 _TENTHS = decimal.Decimal('0.1')
@@ -96,11 +95,9 @@ class WindDirection(enum.Enum):
 
 	@staticmethod
 	def from_degrees(degrees):
-		#print(degrees)
 		if degrees < 1 or degrees > 360:
 			return None
 		return _WindDirection__FROM_DEGREE_MAP[degrees]
-        
 _WindDirection__FROM_DEGREE_MAP = {
 	350: WindDirection.N, 351: WindDirection.N, 352: WindDirection.N, 353: WindDirection.N, 354: WindDirection.N, 355: WindDirection.N, 356: WindDirection.N, 357: WindDirection.N, 358: WindDirection.N, 359: WindDirection.N, 360: WindDirection.N, 1: WindDirection.N, 2: WindDirection.N, 3: WindDirection.N, 4: WindDirection.N, 5: WindDirection.N, 6: WindDirection.N, 7: WindDirection.N, 8: WindDirection.N, 9: WindDirection.N, 10: WindDirection.N, 11: WindDirection.N,  # noqa
 	12: WindDirection.NNE, 13: WindDirection.NNE, 14: WindDirection.NNE, 15: WindDirection.NNE, 16: WindDirection.NNE, 17: WindDirection.NNE, 18: WindDirection.NNE, 19: WindDirection.NNE, 20: WindDirection.NNE, 21: WindDirection.NNE, 22: WindDirection.NNE, 23: WindDirection.NNE, 24: WindDirection.NNE, 25: WindDirection.NNE, 26: WindDirection.NNE, 27: WindDirection.NNE, 28: WindDirection.NNE, 29: WindDirection.NNE, 30: WindDirection.NNE, 31: WindDirection.NNE, 32: WindDirection.NNE, 33: WindDirection.NNE, 34: WindDirection.NNE,  # noqa
@@ -725,7 +722,6 @@ class LoopRecord(RecordDict):
 
 		for k1, k2 in cls.LOOP_WIND_DIRECTION_SPECIAL:
 			if arguments[k1]:
-				##print("YYY")
 				arguments[k2] = WindDirection.from_degrees(arguments[k1])
 			else:
 				arguments[k2] = None
