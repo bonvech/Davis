@@ -19,7 +19,7 @@
 --------------------------
 1. В файле davis_main.py написать путь до файлов данных с прибора в строке
    
-datadirname = "D:\\AerosolComplex\\YandexDisk\\ИКМО org.msu\\_Instruments\\_Davis\\2 ВНИИЖТ\\VNIIZT"
+   datadirname = "D:\\AerosolComplex\\YandexDisk\\ИКМО org.msu\\_Instruments\\_Davis\\2 ВНИИЖТ\\VNIIZT"
 
 2. В файле telebot_config.py проверить и при необходимости исправить токен бота и номер канала для вывода сообщений об ошибках.
 
