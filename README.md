@@ -4,16 +4,16 @@
 
 Файлы:
 
-  davis_main.py
-  telebot_config.py
-  start.bat
-  start_test.bat
-  weatherlink:
-      davis_convert.py
-      importer.py
-      models.py
-      supervisor.py
-      utils.py
+    davis_main.py
+    telebot_config.py
+    start.bat
+    start_test.bat
+    weatherlink:
+        davis_convert.py
+        importer.py
+        models.py
+        supervisor.py
+        utils.py
 
 Порядок запуска программы
 --------------------------
