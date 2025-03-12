@@ -21,9 +21,9 @@
    
 datadirname = "D:\\AerosolComplex\\YandexDisk\\ИКМО org.msu\\_Instruments\\_Davis\\2 ВНИИЖТ\\VNIIZT"
 
-3. В файле telebot_config.py проверить и при необходимости исправить токен бота и номер канала для вывода сообщений об ошибках.
+4. В файле telebot_config.py проверить и при необходимости исправить токен бота и номер канала для вывода сообщений об ошибках.
 
-4. В файле start_test.bat прописать путь до файла davis_main.py
+5. В файле start_test.bat прописать путь до файла davis_main.py
    
 Проверить работоспособность программы, запустив start_test.bat
 
