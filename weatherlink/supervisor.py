@@ -140,6 +140,8 @@ class Supervisor:
             if os.path.getmtime(dirname + filename) > max_atime:
                 max_atime = os.path.getmtime(dirname + filename)
                 max_file = dirname + filename
+        
+        self.last_file = max_file 
         return max_file
 
 
@@ -177,7 +179,7 @@ class Supervisor:
 
 
     ## ----------------------------------------------------------------
-    ##  проверить файл
+    ##  проверить файл данных
     ## ----------------------------------------------------------------
     def check_file_data(self):
         ## прочитать файл
@@ -208,10 +210,11 @@ class Supervisor:
     ##  найти и проверить самый поздний файл
     ## ----------------------------------------------------------------
     def check_lastfile(self):
-        last_file = self.get_latest_file(self.extention)
-        self.last_file = last_file
+        #last_file = self.get_latest_file(self.extention)
+        #self.last_file = last_file
         #self.print_message(self.last_file)
 
+        last_file = self.last_file
         ## если файла нет - ошибка в телебота
         if "error" in last_file.lower():
             self.print_info(last_file)
@@ -227,6 +230,7 @@ class Supervisor:
             ## послать предупреждение, что самый поздний файл очень старый
             self.print_info(text)
             #self.print_message(text)
+            return 2
 
         #self.check_file_data()
         return 0
