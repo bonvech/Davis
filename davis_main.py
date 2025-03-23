@@ -1,5 +1,6 @@
 from weatherlink.supervisor import *
 from weatherlink.davis_convert import *
+import sys
 
 
 ############################################################################
@@ -10,13 +11,18 @@ if __name__ == "__main__":
     ##  расширение исходного файла данных
     extention = "wlk"
 
-    davis = Supervisor("Davis")
-    davis.datadirname = datadirname
-    davis.extention = extention
+
+    davis = Supervisor("Davis", datadirname, extention)
     
     ##  find latest "wlk" file
     last_file = davis.get_latest_file(davis.extention)
     print(last_file)
+    
+    ##  check lastfile time
+    if davis.check_lastfile():
+        #sys.exit()
+        exit("Old file")
+        
     
     try:    
         ##  read and convert latest "wlk" file
