@@ -19,16 +19,20 @@ def read_and_convert_data(file_name):
     print()
 
     importer.import_data()
+    #print("End of import data")
 
     ##  add calculated values
     for i in range(len(importer.records)):
         record = importer.records[i]
+        #print(record)
         record.update(calculate_all_record_values(record))
         importer.records[i] = record
+    #print("End of add")
 
     ##  convert to dataframe
     df = pd.DataFrame.from_records(importer.records)
     print(df.shape)
+    
     columns_to_drop = ['solar_radiation', 'solar_radiation_high', 'uv_index', 'uv_index_high']
     df.drop(columns=columns_to_drop, inplace=True)
     print(df.shape)
@@ -38,16 +42,18 @@ def read_and_convert_data(file_name):
     df['wind_direction_prevailing'] = df['wind_direction_prevailing'].apply(lambda x: str(x).split('.')[1])
     df['wind_direction_speed_high'] = df['wind_direction_speed_high'].apply(lambda x: str(x).split('.')[1])
     df['wind_run_distance_total']   = df['wind_run_distance_total'].apply(lambda x: round(float(x), 3))
-    df['temperature_outside']       = df['temperature_outside']      - df['temperature_wet_bulb']
-    df['temperature_outside_high']  = df['temperature_outside_high'] - df['temperature_wet_bulb_high']
-    df['temperature_outside_low']   = df['temperature_outside_low']  - df['temperature_wet_bulb_low']
+    df['temperature_outside_F']     = df['temperature_outside']  
+    df['temperature_outside']       = (df['temperature_outside'] - 32) * 5/9     
+    df['temperature_outside_high']  = (df['temperature_outside_high'] - 32) * 5/9 
+    df['temperature_outside_low']   = (df['temperature_outside_low'] - 32) * 5/9 
     #df['dew_point_outside']
     #df['wind_speed']
     df['wind_run_distance_total'] = df['wind_run_distance_total'].astype(float) * 1.6
     df['wind_speed_high'] = df['wind_speed_high'].astype(float) / 2.25
+    df['wind_speed'] = df['wind_speed'].astype(float) / 2.25
     #df['wind_chill'] = 
     df['barometric_pressure'] = df['barometric_pressure'].astype(float) * 25.4
-    df['temperature_inside']  = df['temperature_inside'].astype(float) - df['temperature_wet_bulb'].astype(float)
+    df['temperature_inside']  = (df['temperature_inside'].astype(float) - 32) * 5/9
     df['dew_point_inside']    = df['dew_point_inside'].astype(float) - 32
     df['rain_collector_type'] = df['rain_collector_type'].apply(lambda x: str(x).split('.')[1])
 
