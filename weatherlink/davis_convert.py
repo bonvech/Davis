@@ -87,7 +87,7 @@ def read_and_convert_data(file_name):
                     'temperature_outside_high', 'temperature_outside_low','temperature_wet_bulb',
                     'temperature_wet_bulb_low', 'temperature_wet_bulb_high',
                     'minutes_past_midnight']
-    df.rename(columns={A:a for A, a in zip(columns_actual, columns_output)}, errors="raise", inplace=True)
+    df.rename(columns={A:a for A, a in zip(columns_actual, columns_output) if A in df.columns}, errors="raise", inplace=True)
 
     ##  re-order columns
     columns = columns_output + df.columns.difference(columns_output).tolist()
