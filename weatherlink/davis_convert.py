@@ -90,7 +90,12 @@ def read_and_convert_data(file_name):
     df.rename(columns={A:a for A, a in zip(columns_actual, columns_output) if A in df.columns}, errors="raise", inplace=True)
 
     ##  re-order columns
+    #print("before")
     columns = columns_output + df.columns.difference(columns_output).tolist()
+    #print(columns)
+    columns = [col for col in columns if col in df.columns ]
+    #print(columns)
+    
     df = df[columns]
     return df
 
